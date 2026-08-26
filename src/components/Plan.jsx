@@ -1,46 +1,66 @@
-import exercises from "../data/exercises.json"; // Import the JSON data
+import exercises from "../data/exercises.json";
+import sessions from "../data/sessions.json";
 
-const nCategories = Object.keys(exercises).length;
-const nExercisesPerCategory = 3;
+const categoryNames = Object.keys(exercises);
+const allExercises = Object.values(exercises).flat();
 
-const generateWorkoutPlan = (nSets) => {
-  const totalBody = exercises.TotalBody.filter(exercise => exercise.difficulty === "hard");
-  console.log(totalBody);
-  const lowerBody = exercises.LowerBody.filter(exercise => exercise.difficulty === "hard");
-  const upperBody = exercises.UpperBody.filter(exercise => exercise.difficulty === "hard");
-  const core = exercises.Core.filter(exercise => exercise.difficulty === "hard");
+const findExercise = (name) =>
+  allExercises.find((exercise) => exercise.name === name);
 
-  let picks = [
-    pickRandom(totalBody, nExercisesPerCategory),
-    pickRandom(lowerBody, nExercisesPerCategory),
-    pickRandom(upperBody, nExercisesPerCategory),
-    pickRandom(core, nExercisesPerCategory),
-  ];
+const pickRandom = (array, count) => {
+  // Randomly pick 'count' elements from 'array', no repeats
+  const pool = [...array];
+  let result = [];
+  while (result.length < count && pool.length) {
+    let index = Math.floor(Math.random() * pool.length);
+    result.push(pool[index]);
+    pool.splice(index, 1);
+  }
+  return result;
+};
+
+const buildRandomSet = (exercisesPerCategory) => {
+  const picks = categoryNames.map((category) =>
+    pickRandom(
+      exercises[category].filter((exercise) => exercise.difficulty === "hard"),
+      exercisesPerCategory
+    )
+  );
 
   let set = [];
-  for (let i = 0; i < nExercisesPerCategory; i++) {
-    for (let j = 0; j < nCategories; j++) {
+  for (let i = 0; i < exercisesPerCategory; i++) {
+    for (let j = 0; j < categoryNames.length; j++) {
       set.push(picks[j][i]);
     }
   }
+  return set;
+};
+
+export const getSessionNames = () => Object.keys(sessions);
+
+export const getSession = (sessionName) => sessions[sessionName] ?? null;
+
+export const getExercisesPerSet = (session) => {
+  if (!session) return 0;
+  if (session.random) {
+    return categoryNames.length * (session.exercisesPerCategory ?? 3);
+  }
+  return session.exercises.length;
+};
+
+const generateWorkoutPlan = (sessionName, nSets) => {
+  const session = sessions[sessionName];
+  if (!session) return [];
+
+  const set = session.random
+    ? buildRandomSet(session.exercisesPerCategory ?? 3)
+    : session.exercises.map(findExercise).filter(Boolean);
 
   let plan = [];
   for (let i = 0; i < nSets; i++) {
     plan = plan.concat(set);
   }
-  console.log(plan);
   return plan;
-};
-
-const pickRandom = (array, count) => {
-  // Randomly pick 'count' elements from 'array', no repeats
-  let result = [];
-  while (result.length < count) {
-    let index = Math.floor(Math.random() * array.length);
-    result.push(array[index]);
-    array.splice(index, 1); // Remove selected exercise
-  }
-  return result;
 };
 
 export default generateWorkoutPlan;

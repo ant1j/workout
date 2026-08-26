@@ -5,38 +5,116 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
 
+.message {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.message-label {
+  font-size: 0.55em;
+  font-weight: 400;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.message-name {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #1c5fd8;
+}
+
 .read-the-docs {
   color: #888;
+}
+
+.exercise-illustration {
+  display: block;
+  max-width: 240px;
+  width: 100%;
+  margin: 1em auto;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin: 1em auto;
+}
+
+.btn {
+  padding: 0.7em 1.6em;
+  font-size: 1em;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 150ms, box-shadow 150ms, filter 150ms;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-pause {
+  background: linear-gradient(135deg, #ffb648, #ff8a00);
+}
+
+.btn-next {
+  background: linear-gradient(135deg, #4f8cff, #1c5fd8);
+}
+
+.btn-start {
+  background: linear-gradient(135deg, #4ade80, #16a34a);
+}
+
+.setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75em;
+}
+
+.setup-label {
+  font-weight: 600;
+}
+
+.sets-input {
+  width: 4em;
+  padding: 0.5em;
+  font-size: 1.1em;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.sets-input:focus {
+  outline: none;
+  border-color: #4f8cff;
+}
+
+.session-select {
+  padding: 0.5em 0.75em;
+  font-size: 1.1em;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.session-select:focus {
+  outline: none;
+  border-color: #4f8cff;
 }

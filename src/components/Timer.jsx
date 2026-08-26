@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import beep from "./Beep";
 
-const Timer = ({ duration, onComplete, isBeeping }) => {
+const Timer = ({ duration, onComplete, isBeeping, isPaused }) => {
   const [timeLeft, setTimeLeft] = useState(duration); // Initialize to the duration prop
   const [audioContext, setAudioContext] = useState(null);
 
@@ -12,6 +12,8 @@ const Timer = ({ duration, onComplete, isBeeping }) => {
   }, [duration, audioContext]);
 
   useEffect(() => {
+    if (isPaused) return;
+
     if (timeLeft === 0) {
       setTimeLeft(-1); // Avoid re-triggering the effect
       onComplete();
@@ -29,7 +31,7 @@ const Timer = ({ duration, onComplete, isBeeping }) => {
     return () => {
       clearTimeout(timerId);
     };
-  }, [timeLeft, onComplete, audioContext, isBeeping]);
+  }, [timeLeft, onComplete, audioContext, isBeeping, isPaused]);
 
   const timerStyle = isBeeping && timeLeft <= 3 ? { color: "red" } : {}; // Change color to red for last 3 seconds
 
@@ -45,6 +47,7 @@ Timer.propTypes = {
   duration: PropTypes.number.isRequired,
   onComplete: PropTypes.func.isRequired,
   isBeeping: PropTypes.bool.isRequired,
+  isPaused: PropTypes.bool.isRequired,
 };
 
 export default Timer;

@@ -1,0 +1,27 @@
+{
+  "Original 7min": {
+    "restTime": 10,
+    "sets": 1,
+    "exercises": [
+      "Jumping Jacks",
+      "Wall Sit",
+      "Push-Ups",
+      "Abdominal Crunches",
+      "Step-Ups onto Chair",
+      "Squats",
+      "Triceps Dips",
+      "Plank",
+      "High Knees",
+      "Lunges",
+      "Push-Up and Rotations",
+      "Side Plank (Left)",
+      "Side Plank (Right)"
+    ]
+  },
+  "Random": {
+    "restTime": 10,
+    "sets": 1,
+    "random": true,
+    "exercisesPerCategory": 3
+  }
+}

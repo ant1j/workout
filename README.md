@@ -1,11 +1,10 @@
 # Open 7 Minute Workout
 
-Minimalist open-source 7 minute workout app built with React and Vite hosted at [ltalirz.github.io/open-7m-workout](https://ltalirz.github.io/open-7m-workout/).
+Minimalist open-source 7 minute workout app built with React and Vite hosted at [ant1j.github.io/workout](https://ant1j.github.io/workout/).
 
-One set consists of 12 exercises, 3 from each of four categories (total body, lower body, upper body, core).
+Choose a workout session (e.g. the classic "Original 7min", or a "Random" session drawing from the exercise library) from the setup screen, along with the rest time and number of sets.
 
-By default, the workout consists of 3 sets, and each exercise is performed for 30 seconds with 5 seconds of rest between exercises.
-Exercise duration, rest duration and number of sets can be configured via URL parameters, so you can bookmark the URL with the settings you prefer. For example: [ltalirz.github.io/open-7m-workout/?sets=1&duration=30&rest=10](https://ltalirz.github.io/open-7m-workout/?sets=1&duration=30&rest=10)
+Exercise duration, rest duration and number of sets can be configured via URL parameters, so you can bookmark the URL with the settings you prefer. For example: [ant1j.github.io/workout/?sets=1&duration=30&rest=10](https://ant1j.github.io/workout/?sets=1&duration=30&rest=10)
 
 ## Requirements
 
